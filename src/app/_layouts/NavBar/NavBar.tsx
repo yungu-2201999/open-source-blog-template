@@ -6,7 +6,7 @@ import UserAction from './components/UserAction/UserAction'
 
 const NavBar = () => {
   return (
-    <header className='sticky bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 w-full h-14 flex items-center '>
+    <header className='fixed top-0 z-50 bg-gradient-to-r dark:from-indigo-500 from-cyan-400 dark:via-purple-500 via-lime-100 dark:to-pink-500 to-lime-100 w-full h-14 flex items-center '>
       <Logo></Logo>
       <Nav></Nav>
       <div className='flex gap-5 ml-auto w-100px mr-4 h-full items-center'>

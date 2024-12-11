@@ -7,12 +7,11 @@ export default function NotFound({
   error: Error & { digest?: string }
   reset: () => void
 }) {
-    
   return (
-    <html>
-      <body className="bg-slate-900 text-white">
-        Not Found
-      </body>
-    </html>
+    <>
+       <div className="text-white text-center ">
+         Not Found 
+        </div>
+    </>
   )
 }

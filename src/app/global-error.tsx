@@ -10,7 +10,7 @@ export default function GlobalError({
   return (
     // global-error must include html and body tags
     <html>
-      <body className=" bg-slate-900">
+      <body className=" dark:bg-slate-900 bg-white">
         <h2>Something went wrong!</h2>
         <button onClick={() => reset()}>Try again</button>
       </body>
