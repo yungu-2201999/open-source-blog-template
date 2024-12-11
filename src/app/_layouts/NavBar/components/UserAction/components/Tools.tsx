@@ -20,7 +20,7 @@ export default function Tools() {
     const [isFullscreen, setIsFullscreen] = React.useState(false);
 
     return (
-        <ul className=' md:flex hidden items-center space-x-2'>
+        <ul className=' sm:flex hidden items-center space-x-2'>
             {
                 ToolsItems.map((item, id) => (
                     <li className="bg-white/50 p-2 rounded-full hover:bg-white" key={id}

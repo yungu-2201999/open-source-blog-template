@@ -15,7 +15,7 @@ const Search = () => {
                 <div className='flex-1'>
                     <input type="text" placeholder="Search" onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)}
                         className={[
-                            'flex-1 outline-0 rounded-sm h-full bg-t bg-transparent pl-2 placeholder:text-gray-400 w-full overflow-hidden w-full',
+                            'flex-1 outline-0 rounded-sm h-full bg-t bg-transparent pl-2 placeholder:text-gray-400 w-full overflow-hidden ',
                             isFocused && 'w-[300px]'
                         ].join(' ')} />
                 </div>
