@@ -7,10 +7,10 @@ import useThemeStore from '@/stores/theme'
 import { Theme } from '@/stores/theme'
 
 function toggleTheme(theme: "dark" | "light") {
-    document.body.classList.toggle(
+    document.documentElement.classList.toggle(
         'dark', theme === 'dark' ? true : false
     )
-    document.body.classList.toggle(
+    document.documentElement.classList.toggle(
         'light', theme === 'light' ? true : false
     )
 }
@@ -53,19 +53,23 @@ export default function Tools() {
                     Math.max(y, innerHeight - y)
                 );
                 
-                const isDark = document.body.className.split(' ').includes('dark')
+                let isDark:boolean;
+
                 const transition = document.startViewTransition(() => {
+                    const root = document.documentElement;
+                    isDark = root.className.split(' ').includes('dark');
                     const localTheme = localStorage.getItem('theme');
-                    document.body.classList.toggle(
-                        'dark', localTheme === 'dark' ? true : false
+
+                    root.classList.toggle(
+                        'dark', theme === 'dark' ? true : false
                     )
-                    document.body.classList.toggle(
-                        'light', localTheme === 'light' ? true : false
+                    root.classList.toggle(
+                        'light', theme === 'light' ? true : false
                     )
-                    setTheme(localTheme as Theme)
-                    localStorage.setItem('theme', localTheme === 'dark' ? 'light' : 'dark')
+                    setTheme(localTheme as Theme);
+                    localStorage.setItem('theme', localTheme === 'dark' ? 'light' : 'dark');
                 });
-                console.log(isDark)
+
                 transition.ready.then(() => {
                     const clipPath = [
                         `circle(0px at ${x}px ${y}px)`,
@@ -76,8 +80,8 @@ export default function Tools() {
                             clipPath: isDark ? clipPath.reverse() : clipPath,
                         },
                         {
-                            duration: 500,
-                            easing: "ease-in",
+                            duration: 800,
+                            easing: "ease-out",
                             pseudoElement: isDark ? "::view-transition-old(root)" : "::view-transition-new(root)"
                         }
                     )
