@@ -42,25 +42,52 @@ export default function Tools() {
     }, []);
     const ToolsItems = [
         {
-            icon: theme === 'dark' ? <AiFillMoon /> :  <AiFillSun />,
+            icon: theme === 'dark' ? <AiFillMoon /> : <AiFillSun />,
             title: "theme",
             type: theme,
-            onClick: () => {
-                const localTheme = localStorage.getItem('theme');
-                document.body.classList.toggle(
-                    'dark', localTheme === 'dark' ? true : false
-                )
-                document.body.classList.toggle(
-                    'light', localTheme === 'light' ? true : false
-                )
-                setTheme(localTheme as Theme)
-                localStorage.setItem('theme', localTheme === 'dark' ? 'light' : 'dark')
+            onClick: (event?: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+                const x = event!.clientX;
+                const y = event!.clientY;
+                const endRadius = Math.hypot(
+                    Math.max(x, innerWidth - x),
+                    Math.max(y, innerHeight - y)
+                );
+                
+                const isDark = document.body.className.split(' ').includes('dark')
+                const transition = document.startViewTransition(() => {
+                    const localTheme = localStorage.getItem('theme');
+                    document.body.classList.toggle(
+                        'dark', localTheme === 'dark' ? true : false
+                    )
+                    document.body.classList.toggle(
+                        'light', localTheme === 'light' ? true : false
+                    )
+                    setTheme(localTheme as Theme)
+                    localStorage.setItem('theme', localTheme === 'dark' ? 'light' : 'dark')
+                });
+                console.log(isDark)
+                transition.ready.then(() => {
+                    const clipPath = [
+                        `circle(0px at ${x}px ${y}px)`,
+                        `circle(${endRadius}px at ${x}px ${y}px)`,
+                    ];
+                    document.documentElement.animate(
+                        {
+                            clipPath: isDark ? clipPath.reverse() : clipPath,
+                        },
+                        {
+                            duration: 500,
+                            easing: "ease-in",
+                            pseudoElement: isDark ? "::view-transition-old(root)" : "::view-transition-new(root)"
+                        }
+                    )
+                })
             },
         },
         {
             icon: (isFullscreen: boolean) => isFullscreen ? <AiOutlineFullscreenExit /> : <AiOutlineFullscreen />,
             title: "fullscreen",
-            onClick: () => {
+            onClick: (event?: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
                 if (screenfull.isEnabled) {
                     screenfull.toggle();
                     setIsFullscreen(!isFullscreen);
@@ -75,8 +102,8 @@ export default function Tools() {
                     <li className={[
                         "bg-white/50 p-2 rounded-full hover:bg-white/70 text-black"
                     ].join(' ')} key={id}
-                        onClick={() => {
-                            item.onClick();
+                        onClick={(e) => {
+                            item.onClick(e);
                         }}
                     >{
                             typeof item.icon === "function" ? item.icon(isFullscreen) : item.icon

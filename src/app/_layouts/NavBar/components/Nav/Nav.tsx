@@ -39,10 +39,10 @@ export default function Nav() {
         {
           NavList.map((item, index) => (
             <li key={index} className={[
-              href.includes(item.link) && 'bg-white/20 font-bold dark:text-yellow-100 text-black',
+              href.includes(item.link) && 'bg-white/20 font-bold dark:text-yellow-100 text-black cursor-auto',
               'hover:bg-white/20 p-1 rounded px-2 cursor-pointer'
             ].join(' ')}>
-              <a href={item.link} target='self'>{item.name}</a>
+              <a href={href.includes(item.link)?"#":item.link} target='self'>{item.name}</a>
             </li>
           ))
         }
@@ -61,6 +61,19 @@ export default function Nav() {
       ].join(' ')}
         data-mobile-nav='1'
       >
+        <div 
+          data-mobile-nav='1'
+          className={[
+            href.includes('/') && 'bg-white/20 font-bold',
+            'flex items-center gap-2 p-2 cursor-pointer hover:bg-white/20 text-black ',
+          ].join(' ')} onPointerDown={() => {
+            router.push('/');
+            setIsOpen(false);
+          }}>
+          <span
+            data-mobile-nav='1'
+          >Home</span>
+        </div>
         {
           NavList.map((item, index) => (
             <div key={index}
@@ -69,7 +82,7 @@ export default function Nav() {
                 href.includes(item.link) && 'bg-white/20 font-bold',
                 'flex items-center gap-2 p-2 cursor-pointer hover:bg-white/20 text-black ',
               ].join(' ')} onPointerDown={() => {
-                router.push(item.link);
+                href.includes(item.link)|| router.push(item.link);
                 setIsOpen(false);
               }}>
               <span
