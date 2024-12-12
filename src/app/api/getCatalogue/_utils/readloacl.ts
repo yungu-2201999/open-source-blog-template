@@ -3,7 +3,6 @@ import fs from 'fs';
 import path from 'path';
 
 const articlePath = path.join(process.cwd(), './src/articles/');
-const files = fs.readdirSync(articlePath);
 
 export function getKBase() {
     const files = fs.readdirSync(articlePath);

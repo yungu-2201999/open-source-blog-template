@@ -1,17 +1,11 @@
 'use client' // Error boundaries must be Client Components
 
-export default function NotFound({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string }
-  reset: () => void
-}) {
+export default function NotFound() {
   return (
     <>
-       <div className="text-white text-center ">
-         Not Found 
-        </div>
+      <div className="text-white text-center ">
+        Not Found
+      </div>
     </>
   )
 }

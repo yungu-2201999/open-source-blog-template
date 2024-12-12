@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import UnsetDefault from './_components/UnsetDefault'
-import Footer from "./_layouts/Footer/Footer";
 import NavBar from "./_layouts/NavBar/NavBar";
 
 const geistSans = localFont({
@@ -27,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full w-full!">
+    <html lang="en" className="h-full w-full! dark">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>

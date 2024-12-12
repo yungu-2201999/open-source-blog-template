@@ -12,13 +12,13 @@ const NavList = [
     name: 'About Me',
     link: '/about'
   }
-]
-
+];
 
 export default function Nav() {
-  const router = useRouter()
-  const href = usePathname()
+  const router = useRouter();
+  const href = usePathname();
   const [isOpen, setIsOpen] = React.useState(false);
+
   React.useEffect(() => {
     const handlerPointer = (e: PointerEvent) => {
       if ((e.target as HTMLElement)!.getAttribute('data-mobile-nav')) {
@@ -57,7 +57,7 @@ export default function Nav() {
       </div>
       <div className={[
         'fixed w-full p-0 bg-white left-0 top-[56px] md:hidden shadow ',
-        isOpen ? 'h-[fit-content] p-1' : 'h-0 top-[-999999px] hidden'
+        isOpen ? 'h-[fit-content] p-1' : 'h-0 top-[-999px] hidden'
       ].join(' ')}
         data-mobile-nav='1'
       >
@@ -81,7 +81,8 @@ export default function Nav() {
               className={[
                 href.includes(item.link) && 'bg-white/20 font-bold',
                 'flex items-center gap-2 p-2 cursor-pointer hover:bg-white/20 text-black ',
-              ].join(' ')} onPointerDown={() => {
+              ].join(' ')}
+               onPointerDown={() => {
                 href.includes(item.link)|| router.push(item.link);
                 setIsOpen(false);
               }}>

@@ -7,7 +7,7 @@ import { textAlignMap } from './map'
 interface InitialConfig {
   textAlign: 0 | 1 | 2;
 };
-let initialConfig: InitialConfig = {
+const initialConfig: InitialConfig = {
   textAlign: 0,// 0: left, 1: center, 2: right
 };
 
@@ -61,7 +61,7 @@ export default function SiderBarLeft() {
         isClose ? "right-[-28px] w-12 justify-end pr-2" : "right-[-16px] justify-center ",
         'w-8 h-8 top-[15%] absolute z-10 dark:bg-white/20 bg-black/5 dark:hover:bg-white/40 hover:bg-black/20 text-black flex items-center rounded-full'
       ].join(' ')} onClick={() => setIsClose(!isClose)}
-      title="catalogue"
+        title="catalogue"
       >
         {isClose ? <AiOutlineDoubleRight /> : <AiOutlineDoubleLeft />}
       </div>

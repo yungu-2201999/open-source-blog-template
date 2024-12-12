@@ -1,5 +1,4 @@
 import React from 'react'
-import NavBar from './_layouts/NavBar/NavBar'
 import Footer from './_layouts/Footer/Footer'
 
 const page = () => {
