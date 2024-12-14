@@ -2,6 +2,7 @@
 import React from 'react'
 import { AiFillCaretDown } from "react-icons/ai";
 import { useRouter, usePathname } from 'next/navigation'
+import Link from 'next/link'
 
 const NavList = [
   {
@@ -46,7 +47,7 @@ export default function Nav() {
               href.includes(item.link) && 'bg-white/20 font-bold dark:text-yellow-100 text-black cursor-auto',
               'hover:bg-white/20 p-1 rounded px-2 cursor-pointer'
             ].join(' ')}>
-              <a href={href.includes(item.link)?"#":item.link} target='self'>{item.name}</a>
+              <Link href={href.includes(item.link)?"#":item.link}>{item.name}</Link>
             </li>
           ))
         }

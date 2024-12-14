@@ -21,68 +21,68 @@ export default function Tools() {
     const theme = useThemeStore((state => state.theme));
     const setTheme = useThemeStore((state => state.updateTheme));
 
-    // React.useEffect(() => {
-    //     const themeMedia = window.matchMedia("(prefers-color-scheme: light)");
+    React.useEffect(() => {
+        const themeMedia = window.matchMedia("(prefers-color-scheme: light)");
        
-    //     toggleTheme(localStorage.getItem('theme') as Theme || 'dark');
-    //     setTheme(localStorage.getItem('theme') as Theme || 'dark');
-    //     // listen to the theme change
-    //     themeMedia.addEventListener("change", e => {
-    //         if (e.matches) {
-    //             localStorage.setItem('theme', 'light');
-    //         } else {
-    //             localStorage.setItem('theme', 'dark');
-    //         }
-    //         toggleTheme(localStorage.getItem('theme') as Theme || 'dark');
-    //     });
-    // }, [setTheme]);
+        toggleTheme(localStorage.getItem('theme') as Theme || 'dark');
+        setTheme(localStorage.getItem('theme') as Theme || 'dark');
+        // listen to the theme change
+        themeMedia.addEventListener("change", e => {
+            if (e.matches) {
+                localStorage.setItem('theme', 'light');
+            } else {
+                localStorage.setItem('theme', 'dark');
+            }
+            toggleTheme(localStorage.getItem('theme') as Theme || 'dark');
+        });
+    }, [setTheme]);
     const ToolsItems = [
-        // {
-        //     icon: theme === 'dark' ? <AiFillMoon /> : <AiFillSun />,
-        //     title: "theme",
-        //     type: theme,
-        //     onClick: (event?: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
-        //         const x = event!.clientX;
-        //         const y = event!.clientY;
-        //         const endRadius = Math.hypot(
-        //             Math.max(x, innerWidth - x),
-        //             Math.max(y, innerHeight - y)
-        //         );
+        {
+            icon: theme === 'dark' ? <AiFillMoon /> : <AiFillSun />,
+            title: "theme",
+            type: theme,
+            onClick: (event?: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+                const x = event!.clientX;
+                const y = event!.clientY;
+                const endRadius = Math.hypot(
+                    Math.max(x, innerWidth - x),
+                    Math.max(y, innerHeight - y)
+                );
 
-        //         let isDark: boolean;
+                let isDark: boolean;
 
-        //         document.startViewTransition(() => {
-        //             isDark = document.documentElement.className.split(' ').includes('dark');
-        //             const localTheme = localStorage.getItem('theme') || 'dark';
-        //             if(localTheme == 'dark'){
-        //                 document.documentElement.classList.remove("dark")
-        //                 document.documentElement.classList.add("light")
-        //             }else{
-        //                 document.documentElement.classList.remove("light")
-        //                 document.documentElement.classList.add("dark")
-        //             }
+                document.startViewTransition(() => {
+                    isDark = document.documentElement.className.split(' ').includes('dark');
+                    const localTheme = localStorage.getItem('theme') || 'dark';
+                    if(localTheme == 'dark'){
+                        document.documentElement.classList.remove("dark")
+                        document.documentElement.classList.add("light")
+                    }else{
+                        document.documentElement.classList.remove("light")
+                        document.documentElement.classList.add("dark")
+                    }
                  
-        //             setTheme(localTheme as Theme == "dark"? "light" : "dark");
-        //             console.log("theme",theme)
-        //             localStorage.setItem('theme', localTheme === 'dark' ? 'light' : 'dark');
-        //         }).ready.then(() => {
-        //             const clipPath = [
-        //                 `circle(0px at ${x}px ${y}px)`,
-        //                 `circle(${endRadius}px at ${x}px ${y}px)`,
-        //             ];
-        //             document.documentElement.animate(
-        //                 {
-        //                     clipPath: isDark ? clipPath.reverse() : clipPath,
-        //                 },
-        //                 {
-        //                     duration: 800,
-        //                     easing: "ease-out",
-        //                     pseudoElement: isDark ? "::view-transition-old(root)" : "::view-transition-new(root)"
-        //                 }
-        //             )
-        //         })
-        //     },
-        // },
+                    setTheme(localTheme as Theme == "dark"? "light" : "dark");
+                    console.log("theme",theme)
+                    localStorage.setItem('theme', localTheme === 'dark' ? 'light' : 'dark');
+                }).ready.then(() => {
+                    const clipPath = [
+                        `circle(0px at ${x}px ${y}px)`,
+                        `circle(${endRadius}px at ${x}px ${y}px)`,
+                    ];
+                    document.documentElement.animate(
+                        {
+                            clipPath: isDark ? clipPath.reverse() : clipPath,
+                        },
+                        {
+                            duration: 800,
+                            easing: "ease-out",
+                            pseudoElement: isDark ? "::view-transition-old(root)" : "::view-transition-new(root)"
+                        }
+                    )
+                })
+            },
+        },
         {
             icon: (isFullscreen: boolean) => isFullscreen ? <AiOutlineFullscreenExit /> : <AiOutlineFullscreen />,
             title: "fullscreen",
