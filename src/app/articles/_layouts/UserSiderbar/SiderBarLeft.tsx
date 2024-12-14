@@ -34,7 +34,7 @@ export default function SiderBarLeft() {
 
   const [baseList, setBaseList] = React.useState([]);
 
-  const { loading, run } = useRequest(fetchBaseList, {
+  useRequest(fetchBaseList, {
     // manual: true，
     onSuccess: (result) => {
       setBaseList(result.list);
