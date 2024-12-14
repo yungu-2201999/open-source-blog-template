@@ -9,6 +9,10 @@ const NavList = [
     link: '/articles'
   },
   {
+    name: 'Projects',
+    link: '/projects'
+  },
+  {
     name: 'About Me',
     link: '/about'
   }

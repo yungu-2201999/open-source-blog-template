@@ -23,11 +23,7 @@ export default function Tools() {
 
     React.useEffect(() => {
         const themeMedia = window.matchMedia("(prefers-color-scheme: light)");
-        if (themeMedia.matches) {
-            localStorage.setItem('theme', 'light');
-        } else {
-            localStorage.setItem('theme', 'dark');
-        }
+       
         toggleTheme(localStorage.getItem('theme') as Theme || 'dark');
         setTheme(localStorage.getItem('theme') as Theme || 'dark');
         // listen to the theme change

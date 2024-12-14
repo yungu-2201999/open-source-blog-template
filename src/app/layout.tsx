@@ -35,7 +35,7 @@ export default function RootLayout({
       >
         <NavBar />
         <UnsetDefault />
-        <main className="pt-[48px] h-full">
+        <main className="pt-[52px] h-full">
           {children}
         </main>
       </body>
