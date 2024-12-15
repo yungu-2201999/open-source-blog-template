@@ -1,7 +1,7 @@
-import {getKBase} from './_utils/readloacl'
+import { getKBase } from '../_utils/index'
 
 
-export async function GET(){
+export async function GET() {
     const list = await getKBase()
-    return Response.json({ list: list })
+    return Response.json({ list }, { status: 200, statusText: "OK" })
 }
